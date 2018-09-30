@@ -1,0 +1,40 @@
+var audQ = document.getElementById("Q");
+
+function playQ() {
+  audQ.play();
+}
+
+class DrumMachine extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: ''
+    };
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  };
+ 
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyPress);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyPress);
+  }
+  handleKeyPress(event){
+    if (event.keyCode === 81){
+      playQ();
+      this.setState({
+        message: 'pressed!'
+      });
+    }
+  }
+  render() {
+    return(
+      <div>HERE{this.state.message}</div>
+    );
+  }
+};
+
+ReactDOM.render(
+  <DrumMachine />,
+  document.getElementById("sample")
+);
