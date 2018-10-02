@@ -1,39 +1,41 @@
-var audQ = document.getElementById("Q");
-var audW = document.getElementById("W");
-var audE = document.getElementById("E");
-var audA = document.getElementById("A");
-var audS = document.getElementById("S");
-var audD = document.getElementById("D");
-var audZ = document.getElementById("Z");
-var audX = document.getElementById("X");
-var audC = document.getElementById("C");
+const Q = 'Q', W = 'W', E = 'E', 
+      A = 'A', S = 'S', D = 'D',
+      Z = 'Z', X = 'X', C = 'C';
 
-function playQ() {
-  audQ.play();
+var audioPaths = {
+  Q: "https://res.cloudinary.com/cd0hgkqgk/video/upload/v1538335238/audio/nipon_cymbal_1.mp3",
+  W: "https://res.cloudinary.com/cd0hgkqgk/video/upload/v1538335237/audio/nipon_cymbal_2.mp3",
+  E: "https://res.cloudinary.com/cd0hgkqgk/video/upload/v1538335238/audio/taiko_2.mp3",
+  A: "https://res.cloudinary.com/cd0hgkqgk/video/upload/v1538335237/audio/med_taiko.mp3",
+  S: "https://res.cloudinary.com/cd0hgkqgk/video/upload/v1538335238/audio/taiko_1.mp3",
+  D: "https://res.cloudinary.com/cd0hgkqgk/video/upload/v1538335238/audio/big_taiko.mp3",
+  Z: "https://res.cloudinary.com/cd0hgkqgk/video/upload/v1538335238/audio/shime_hi.mp3",
+  X: "https://res.cloudinary.com/cd0hgkqgk/video/upload/v1538335238/audio/shime_mute.mp3",
+  C: "https://res.cloudinary.com/cd0hgkqgk/video/upload/v1538335238/audio/shime_hi_2.mp3"
 }
-function playW() {
-  audW.play();
+
+var audElements = {};
+
+var soundNames = {
+  Q: "nipon_cymbal_1",
+  W: "nipon_cymbal_2",
+  E: "taiko_2",
+  A: "med_taiko",
+  S: "taiko_1",
+  D: "big_taiko",
+  Z: "shime_hi",
+  X: "shime_mute",
+  C: "shime_hi_2"
 }
-function playE() {
-  audE.play();
-}
-function playA() {
-  audA.play();
-}
-function playS() {
-  audS.play();
-}
-function playD() {
-  audD.play();
-}
-function playZ() {
-  audZ.play();
-}
-function playX() {
-  audX.play();
-}
-function playC() {
-  audC.play();
+
+function playSound(audElement) {
+  audElement.load();
+  var playPromise = audElement.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(error => {
+      console.log(error);
+    });
+  }
 }
 
 class DrumMachine extends React.Component {
@@ -42,72 +44,67 @@ class DrumMachine extends React.Component {
     this.state = {
       message: ''
     };
+    this.triggerDrum = this.triggerDrum.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   };
  
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyPress);
+    
+    audElements = {
+      Q: document.getElementById(Q),
+      W: document.getElementById(W),
+      E: document.getElementById(E),
+      A: document.getElementById(A),
+      S: document.getElementById(S),
+      D: document.getElementById(D),
+      Z: document.getElementById(Z),
+      X: document.getElementById(X),
+      C: document.getElementById(C)
+    };
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyPress);
+    audElements = {};
+  }
+  triggerDrum(key){
+    playSound(audElements[key]);
+    this.setState({
+      message: soundNames[key]
+    });
+  }
+  handleClick(event){
+    this.triggerDrum(event.target.innerText);
   }
   handleKeyPress(event){
     switch (event.keyCode){
       case 81: // Q
-        playQ();
-        this.setState({
-          message: 'Q Key Pressed'
-        });
+        this.triggerDrum(Q, event.target.id);
         break;
       case 87: // W
-        playW();
-        this.setState({
-          message: 'W Key Pressed'
-        });
+        this.triggerDrum(W);
         break;
       case 69: // E
-        playE();
-        this.setState({
-          message: 'E Key Pressed'
-        });
+        this.triggerDrum(E);
         break;
-        
       case 65: // A
-        playA();
-        this.setState({
-          message: 'A Key Pressed'
-        });
+        this.triggerDrum(A);
         break;
       case 83: // S
-        playS();
-        this.setState({
-          message: 'S Key Pressed'
-        });
+        this.triggerDrum(S);
         break;
       case 68: // D
-        playD();
-        this.setState({
-          message: 'D Key Pressed'
-        });
+        this.triggerDrum(D);
         break;
-        
       case 90: // Z
-        playZ();
-        this.setState({
-          message: 'Z Key Pressed'
-        });
+        this.triggerDrum(Z);
         break;
       case 88: // X
-        playX();
-        this.setState({
-          message: 'X Key Pressed'
-        });
+        this.triggerDrum(X);
         break;
       case 67: // C
-        playC();
-        this.setState({
-          message: 'C Key Pressed'
-        });
+        this.triggerDrum(C);
         break;
         
       default:
@@ -119,12 +116,48 @@ class DrumMachine extends React.Component {
   }
   render() {
     return(
-    <div id="display">{this.state.message}</div>
+      <div>
+        <RenderDisplay message={this.state.message} />
+        <RenderDrumPad soundName={soundNames[Q]} keyName={Q} onClick={this.handleClick} audSrc={audioPaths[Q]} />
+        <RenderDrumPad soundName={soundNames[W]} keyName={W} onClick={this.handleClick} audSrc={audioPaths[W]} />
+        <RenderDrumPad soundName={soundNames[E]} keyName={E} onClick={this.handleClick} audSrc={audioPaths[E]} />
+        <RenderDrumPad soundName={soundNames[A]} keyName={A} onClick={this.handleClick} audSrc={audioPaths[A]} />
+        <RenderDrumPad soundName={soundNames[S]} keyName={S} onClick={this.handleClick} audSrc={audioPaths[S]} />
+        <RenderDrumPad soundName={soundNames[D]} keyName={D} onClick={this.handleClick} audSrc={audioPaths[D]} />
+        <RenderDrumPad soundName={soundNames[Z]} keyName={Z} onClick={this.handleClick} audSrc={audioPaths[Z]} />
+        <RenderDrumPad soundName={soundNames[X]} keyName={X} onClick={this.handleClick} audSrc={audioPaths[X]} />
+        <RenderDrumPad soundName={soundNames[C]} keyName={C} onClick={this.handleClick} audSrc={audioPaths[C]} />
+       </div>
+    );
+  }
+};
+
+class RenderDisplay extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div id="display">{this.props.message}</div>
+    );
+  }
+};
+
+class RenderDrumPad extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div className="drum-pad" id={this.props.soundName} onClick={this.props.onClick} >
+        {this.props.keyName}
+        <audio preload="auto" id={this.props.keyName} className="clip" src={this.props.audSrc}></audio>
+      </div>
     );
   }
 };
 
 ReactDOM.render(
   <DrumMachine />,
-  document.getElementById("sound-name")
+  document.getElementById("drum-machine")
 );
