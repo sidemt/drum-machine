@@ -1,0 +1,71 @@
+.body {
+  background-color: #c9b6ac;
+  color: #54504f;
+}
+
+h1 {
+  font-family: 'Nanum Brush Script', cursive !important;
+}
+
+.header {
+  text-align: center;
+  padding: 2rem 1rem 1rem 1rem;
+}
+
+#drum-machine {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+#display {
+  background-color: #f4aeb3;
+  width: 300px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-family: 'Nanum Brush Script', cursive;
+  font-size: 30px;
+  border-radius: 5px;
+}
+
+.drum-pad-row {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.drum-pad {
+  background-color: #94a89a;
+  font-family: 'Neucha', cursive;
+  font-size: 2.5rem;
+  line-height: 80px;
+  text-align: center;
+  width: 100px;
+  height: 80px;
+  margin: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 2px 8px 5px #9c9696;
+}
+
+.drum-pad:hover {
+  background-color: #8fa395;
+}
+
+.drum-pad:active {
+  background-color: #738c7a;
+  box-shadow: 0 2px 1px #837c7c;
+  transform: translateY(3px);
+}
+
+@media (max-width: 767.98px) {
+  .drum-pad {
+    margin: 1rem .5rem;
+    min-width: 50px;
+    width: 100%;
+  }
+}
