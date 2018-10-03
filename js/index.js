@@ -117,16 +117,24 @@ DrumMachine = function (_React$Component) {_inherits(DrumMachine, _React$Compone
     {
       return (
         React.createElement('div', null,
-          React.createElement(RenderDisplay, { message: this.state.message }),
-          React.createElement(RenderDrumPad, { soundName: soundNames[Q], keyName: Q, onClick: this.handleClick, audSrc: audioPaths[Q] }),
-          React.createElement(RenderDrumPad, { soundName: soundNames[W], keyName: W, onClick: this.handleClick, audSrc: audioPaths[W] }),
-          React.createElement(RenderDrumPad, { soundName: soundNames[E], keyName: E, onClick: this.handleClick, audSrc: audioPaths[E] }),
-          React.createElement(RenderDrumPad, { soundName: soundNames[A], keyName: A, onClick: this.handleClick, audSrc: audioPaths[A] }),
-          React.createElement(RenderDrumPad, { soundName: soundNames[S], keyName: S, onClick: this.handleClick, audSrc: audioPaths[S] }),
-          React.createElement(RenderDrumPad, { soundName: soundNames[D], keyName: D, onClick: this.handleClick, audSrc: audioPaths[D] }),
-          React.createElement(RenderDrumPad, { soundName: soundNames[Z], keyName: Z, onClick: this.handleClick, audSrc: audioPaths[Z] }),
-          React.createElement(RenderDrumPad, { soundName: soundNames[X], keyName: X, onClick: this.handleClick, audSrc: audioPaths[X] }),
-          React.createElement(RenderDrumPad, { soundName: soundNames[C], keyName: C, onClick: this.handleClick, audSrc: audioPaths[C] })));
+          React.createElement('div', { className: 'drum-pad-row' },
+            React.createElement(RenderDisplay, { message: this.state.message })),
+
+          React.createElement('div', { className: 'drum-pad-row' },
+            React.createElement(RenderDrumPad, { soundName: soundNames[Q], keyName: Q, onClick: this.handleClick, audSrc: audioPaths[Q] }),
+            React.createElement(RenderDrumPad, { soundName: soundNames[W], keyName: W, onClick: this.handleClick, audSrc: audioPaths[W] }),
+            React.createElement(RenderDrumPad, { soundName: soundNames[E], keyName: E, onClick: this.handleClick, audSrc: audioPaths[E] })),
+
+          React.createElement('div', { className: 'drum-pad-row' },
+            React.createElement(RenderDrumPad, { soundName: soundNames[A], keyName: A, onClick: this.handleClick, audSrc: audioPaths[A] }),
+            React.createElement(RenderDrumPad, { soundName: soundNames[S], keyName: S, onClick: this.handleClick, audSrc: audioPaths[S] }),
+            React.createElement(RenderDrumPad, { soundName: soundNames[D], keyName: D, onClick: this.handleClick, audSrc: audioPaths[D] })),
+
+          React.createElement('div', { className: 'drum-pad-row' },
+            React.createElement(RenderDrumPad, { soundName: soundNames[Z], keyName: Z, onClick: this.handleClick, audSrc: audioPaths[Z] }),
+            React.createElement(RenderDrumPad, { soundName: soundNames[X], keyName: X, onClick: this.handleClick, audSrc: audioPaths[X] }),
+            React.createElement(RenderDrumPad, { soundName: soundNames[C], keyName: C, onClick: this.handleClick, audSrc: audioPaths[C] }))));
+
 
 
     } }]);return DrumMachine;}(React.Component);

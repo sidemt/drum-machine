@@ -1,6 +1,20 @@
+@mixin centering-cont {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@mixin flex-row-center {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .body {
-  background-color: #c9b6ac;
-  color: #54504f;
+  background-color: hsl(21, 21%, 73%);
+  color: hsl(5, 3%, 32%);
 }
 
 h1 {
@@ -13,15 +27,12 @@ h1 {
 }
 
 #drum-machine {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  @include centering-cont;
   padding: 2rem 1rem;
 }
 
 #display {
-  background-color: #f4aeb3;
+  background-color: hsl(356, 76%, 82%);
   width: 300px;
   height: 50px;
   text-align: center;
@@ -32,14 +43,11 @@ h1 {
 }
 
 .drum-pad-row {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  @include flex-row-center;
 }
 
 .drum-pad {
-  background-color: #94a89a;
+  background-color: hsl(138, 10%, 62%);
   font-family: 'Neucha', cursive;
   font-size: 2.5rem;
   line-height: 80px;
@@ -49,19 +57,20 @@ h1 {
   margin: 1rem;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 2px 8px 5px #9c9696;
+  box-shadow: 2px 8px 5px hsl(5, 3%, 60%);
 }
 
 .drum-pad:hover {
-  background-color: #8fa395;
+  background-color: hsl(138, 10%, 60%);
 }
 
 .drum-pad:active {
-  background-color: #738c7a;
-  box-shadow: 0 2px 1px #837c7c;
+  background-color: hsl(138, 10%, 50%);
+  box-shadow: 0 2px 1px hsl(5, 3%, 50%);
   transform: translateY(3px);
 }
 
+// Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
   .drum-pad {
     margin: 1rem .5rem;

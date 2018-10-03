@@ -117,16 +117,24 @@ class DrumMachine extends React.Component {
   render() {
     return(
       <div>
-        <RenderDisplay message={this.state.message} />
-        <RenderDrumPad soundName={soundNames[Q]} keyName={Q} onClick={this.handleClick} audSrc={audioPaths[Q]} />
-        <RenderDrumPad soundName={soundNames[W]} keyName={W} onClick={this.handleClick} audSrc={audioPaths[W]} />
-        <RenderDrumPad soundName={soundNames[E]} keyName={E} onClick={this.handleClick} audSrc={audioPaths[E]} />
-        <RenderDrumPad soundName={soundNames[A]} keyName={A} onClick={this.handleClick} audSrc={audioPaths[A]} />
-        <RenderDrumPad soundName={soundNames[S]} keyName={S} onClick={this.handleClick} audSrc={audioPaths[S]} />
-        <RenderDrumPad soundName={soundNames[D]} keyName={D} onClick={this.handleClick} audSrc={audioPaths[D]} />
-        <RenderDrumPad soundName={soundNames[Z]} keyName={Z} onClick={this.handleClick} audSrc={audioPaths[Z]} />
-        <RenderDrumPad soundName={soundNames[X]} keyName={X} onClick={this.handleClick} audSrc={audioPaths[X]} />
-        <RenderDrumPad soundName={soundNames[C]} keyName={C} onClick={this.handleClick} audSrc={audioPaths[C]} />
+        <div className="drum-pad-row">
+          <RenderDisplay message={this.state.message} />
+        </div>
+        <div className="drum-pad-row">
+          <RenderDrumPad soundName={soundNames[Q]} keyName={Q} onClick={this.handleClick} audSrc={audioPaths[Q]} />
+          <RenderDrumPad soundName={soundNames[W]} keyName={W} onClick={this.handleClick} audSrc={audioPaths[W]} />
+          <RenderDrumPad soundName={soundNames[E]} keyName={E} onClick={this.handleClick} audSrc={audioPaths[E]} />
+        </div>
+        <div className="drum-pad-row">
+          <RenderDrumPad soundName={soundNames[A]} keyName={A} onClick={this.handleClick} audSrc={audioPaths[A]} />
+          <RenderDrumPad soundName={soundNames[S]} keyName={S} onClick={this.handleClick} audSrc={audioPaths[S]} />
+          <RenderDrumPad soundName={soundNames[D]} keyName={D} onClick={this.handleClick} audSrc={audioPaths[D]} />
+        </div>
+        <div className="drum-pad-row">
+          <RenderDrumPad soundName={soundNames[Z]} keyName={Z} onClick={this.handleClick} audSrc={audioPaths[Z]} />
+          <RenderDrumPad soundName={soundNames[X]} keyName={X} onClick={this.handleClick} audSrc={audioPaths[X]} />
+          <RenderDrumPad soundName={soundNames[C]} keyName={C} onClick={this.handleClick} audSrc={audioPaths[C]} />
+        </div>
        </div>
     );
   }
